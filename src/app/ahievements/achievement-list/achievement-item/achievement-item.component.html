@@ -1,0 +1,8 @@
+<ion-card>
+  <ion-item style="overflow: initial;
+            white-space: initial;">
+    <h5>{{achievement.name}}</h5>
+    <p>{{achievement.description}}</p>
+    <p *ngIf="currentTier">{{accountAchievementCount}}/{{currentTier.count}}</p>
+  </ion-item>
+</ion-card>

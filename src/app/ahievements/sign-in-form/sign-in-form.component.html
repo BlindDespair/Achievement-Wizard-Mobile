@@ -1,0 +1,16 @@
+<ion-card>
+  <ion-list>
+  <ion-item>
+        <ion-label floating class="input-group-addon">API KEY:</ion-label>
+    <ion-input type="text" class="form-control" id="exampleInputAmount" (keyup.enter)="authorize(apiKeyInput.value)" #apiKeyInput></ion-input>
+  </ion-item>
+  </ion-list>
+  <div class="row flex-items-xs-center flex-items-xs-middle error" *ngIf="error">
+    <span *ngIf="error.status === 403">Incorrect API KEY.</span>
+  </div>
+  <div padding>
+    <button block ion-button (click)="authorize(apiKeyInput.value)">Submit</button>
+  </div>
+</ion-card>
+
+

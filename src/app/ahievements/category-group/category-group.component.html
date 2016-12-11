@@ -1,0 +1,5 @@
+<div *ngIf="categoryGroups">
+  <ion-list class="list-unstyled">
+    <app-category-group-item *ngFor="let categoryGroup of categoryGroups" [categoryGroup]="categoryGroup" (categoryGroupOpened)="openCategoryGroup($event)"></app-category-group-item>
+  </ion-list>
+</div>

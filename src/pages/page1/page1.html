@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Achievements</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <app-sign-in-form [error]="error" [style.display]="isAuthorized?'none':'inherit'" (authorizated)="onAutorized($event)"></app-sign-in-form>
+  <app-greeting-user *ngIf="isAuthorized" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" [account]="account" (greeting)="onGreeting()" (logedout)="onLogout()"></app-greeting-user>
+  <app-category-group *ngIf="isAuthorized" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" [categoryGroups]="categoryGroups" (loadCategoryGroupData)="onLoadData()" (categoryGroupOpened)="navToCategoryGroup($event)"></app-category-group>
+</ion-content>

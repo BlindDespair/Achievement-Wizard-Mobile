@@ -1,0 +1,4 @@
+
+<ion-list>
+  <app-category-item *ngFor="let category of categories" [category]="category" (categoryOpened)="openCategory($event)"></app-category-item>
+</ion-list>
