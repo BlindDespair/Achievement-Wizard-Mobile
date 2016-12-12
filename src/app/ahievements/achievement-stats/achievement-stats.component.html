@@ -1,0 +1,3 @@
+<p class="achievement-status" *ngIf="currentTier && achievement.tiers.length > 1 && accountAchievementCount < achievement.tiers[achievement.tiers.length-2].count">{{accountAchievementCount}}/{{currentTier.count}}</p>
+<p class="achievement-status"> {{accountAchievementCount}}/{{achievement.tiers[achievement.tiers.length-1].count}}</p>
+<p class="achievement-status">{{totalAchievementPointsEarned}}/{{totalAchievementPoints}}<img src="assets/20px-Arenanet_Points.png"></p>

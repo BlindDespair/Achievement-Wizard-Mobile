@@ -1,0 +1,44 @@
+<ion-card>
+  <ion-item>
+    <h4>{{achievement.name}}</h4>
+    <p class="description text-wrap">{{achievement.description}}</p>
+    <p class="requirements text-wrap">{{achievement.requirement}}</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <app-achievement-stats [achievement]="achievement" [accountAchievementCount]="accountAchievementCount" [currentTier]="currentTier"></app-achievement-stats>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <div class="progress-container">
+          <div class="progress" [style.width]="accountAchievementCount/achievement.tiers[achievement.tiers.length-1].count*100+'%'"></div>
+        </div>
+      </ion-row>
+      <ion-row *ngIf="achievement.tiers.length > 1">
+        <ion-col>
+          <ion-list class="achievement-tiers">
+            <ion-item class="achievement-tiers-header">
+              <ion-row>
+                <ion-col class="tier-completed" width-33><p>Complete</p></ion-col>
+                <ion-col class="tier-number" width-10><p>Tier</p></ion-col>
+                <ion-col class="tier-points" width-20><p>Points</p></ion-col>
+                <ion-col class="tier-counts" width-34><p>Objectives</p></ion-col>
+              </ion-row>
+            </ion-item>
+            <ion-item *ngFor="let tier of achievement.tiers; let i = index">
+              <ion-row>
+                <ion-col class="tier-completed" width-33>
+                  <div><ion-icon *ngIf="tier.count <= accountAchievementCount" name="checkmark"></ion-icon></div>
+                  <div><ion-icon *ngIf="tier.count > accountAchievementCount" name="remove"></ion-icon></div>
+                </ion-col>
+                <ion-col class="tier-number" width-10><p>{{i+1}}</p></ion-col>
+                <ion-col class="tier-points" width-20><p>{{tier.points}}</p></ion-col>
+                <ion-col class="tier-counts" width-34><p>{{tier.count}}</p></ion-col>
+              </ion-row>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-card>

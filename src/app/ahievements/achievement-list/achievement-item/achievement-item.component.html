@@ -1,8 +1,10 @@
 <ion-card>
-  <ion-item style="overflow: initial;
-            white-space: initial;">
+  <ion-item (click)="openAchievement(achievement, accountAchievementCount, currentTier)">
     <h5>{{achievement.name}}</h5>
-    <p>{{achievement.description}}</p>
-    <p *ngIf="currentTier">{{accountAchievementCount}}/{{currentTier.count}}</p>
+    <p class="description">{{achievement.description}}</p>
+    <app-achievement-stats [achievement]="achievement" [accountAchievementCount]="accountAchievementCount" [currentTier]="currentTier"></app-achievement-stats>
+    <div class="progress-container">
+      <div class="progress" [style.width]="accountAchievementCount/achievement.tiers[achievement.tiers.length-1].count*100+'%'"></div>
+    </div>
   </ion-item>
 </ion-card>

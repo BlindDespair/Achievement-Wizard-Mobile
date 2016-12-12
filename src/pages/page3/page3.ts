@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 import {NavController, NavParams, LoadingController} from 'ionic-angular';
-import {Category, AccountAchievement} from "../../app/shared/achievements.model";
+import {Category, AccountAchievement, Achievement, Tier} from "../../app/shared/achievements.model";
 import {AchievementsApiService} from "../../app/shared/achievements-api.service";
+import {AchievementPage} from "../achievement-page/achievement-page";
 
 @Component({
   selector: 'page-page3',
@@ -27,6 +28,15 @@ export class Page3 {
       this.accountAchievemetns = res;
       return this.loader.dismiss();
     });
+  }
+
+  navToAchievementPage(achievementData: any){
+    console.log(achievementData.achievement, achievementData.accountAchievementCount, achievementData.currentTier);
+    this.navCtrl.push(AchievementPage,{
+      achievement: achievementData.achievement,
+      accountAchievementCount: achievementData.accountAchievementCount,
+      currentTier: achievementData.currentTier
+    })
   }
 
 }

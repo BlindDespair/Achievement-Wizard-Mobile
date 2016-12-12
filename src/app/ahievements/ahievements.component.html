@@ -1,3 +1,0 @@
-<app-sign-in-form [error]="error" [style.display]="isAuthorized?'none':'inherit'" (authorizated)="onAutorized($event)"></app-sign-in-form>
-<app-greeting-user *ngIf="isAuthorized" [account]="account" (greeting)="onGreeting()" (logedout)="onLogout()"></app-greeting-user>
-<app-category-group *ngIf="isAuthorized" [categoryGroups]="categoryGroups" (loadCategoryGroupData)="onLoadData()" (categoryGroupOpened)="openCategoryGroup($event)"></app-category-group>

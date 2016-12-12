@@ -8,5 +8,5 @@
 </ion-header>
 
 <ion-content>
-  <app-achievement-list [currentlyOpenedCategory]="category" [accountAchievements]="accountAchievemetns"></app-achievement-list>
+  <app-achievement-list [currentlyOpenedCategory]="category" [accountAchievements]="accountAchievemetns" (achievementOpened)="navToAchievementPage($event)"></app-achievement-list>
 </ion-content>
