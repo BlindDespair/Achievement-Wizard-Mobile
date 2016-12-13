@@ -11,4 +11,9 @@
   <app-sign-in-form [error]="error" [style.display]="isAuthorized?'none':'inherit'" (authorizated)="onAutorized($event)"></app-sign-in-form>
   <app-greeting-user *ngIf="isAuthorized" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" [account]="account" (greeting)="onGreeting()" (logedout)="onLogout()"></app-greeting-user>
   <app-category-group *ngIf="isAuthorized" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" [categoryGroups]="categoryGroups" (loadCategoryGroupData)="onLoadData()" (categoryGroupOpened)="navToCategoryGroup($event)"></app-category-group>
+  <div *ngIf="isAuthorized&&!accountLoaded&&!dataLoaded&&isLoaderDismissed" class="wrap">
+    <div class="button-wrap">
+      <button ion-button (click)="retry()">Retry</button>
+    </div>
+  </div>
 </ion-content>

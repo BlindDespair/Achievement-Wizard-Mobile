@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import {NavController, NavParams, LoadingController} from 'ionic-angular';
-import {Category, AccountAchievement, Achievement, Tier} from "../../app/shared/achievements.model";
+import {Category, AccountAchievement} from "../../app/shared/achievements.model";
 import {AchievementsApiService} from "../../app/shared/achievements-api.service";
 import {AchievementPage} from "../achievement-page/achievement-page";
 
@@ -23,11 +23,16 @@ export class Page3 {
   ngOnInit(){
     this.loader = this.loadingController.create();
     this.loader.present();
-    this.achievementsApiService.getAccountAchievements(localStorage.getItem('api_key')).subscribe(res =>
-    {
-      this.accountAchievemetns = res;
-      return this.loader.dismiss();
-    });
+    this.achievementsApiService.getAccountAchievements(localStorage.getItem('api_key')).subscribe(
+      res => {
+        this.accountAchievemetns = res;
+        return this.loader.dismiss();
+      },
+      err => {
+        this.loader.dismiss();
+        alert("Connection problem, please check your internet");
+        return this.navCtrl.pop();
+      });
   }
 
   navToAchievementPage(achievementData: any){
