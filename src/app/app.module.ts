@@ -46,6 +46,6 @@ import {AchievementStatsComponent} from "./ahievements/achievement-stats/achieve
     Page3,
     AchievementPage
   ],
-  providers: [AchievementsApiService,{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [AchievementsApiService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}
