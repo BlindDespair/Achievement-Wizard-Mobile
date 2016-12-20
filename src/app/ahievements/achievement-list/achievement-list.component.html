@@ -1,4 +1,3 @@
-<ion-list *ngIf="currentlyOpenedCategory&&accountAchievements">
+<ion-list *ngIf="achievements&&accountAchievements">
   <app-achievement-item *ngFor="let achievement of sortedAchievements" [achievement]="achievement" [accountAchievements]="accountAchievements" (achievementOpened)="openAchievement($event)"></app-achievement-item>
 </ion-list>
-

@@ -11,7 +11,7 @@ import {AchievementPage} from "../achievement-page/achievement-page";
 })
 export class Page3 {
   category: Category;
-  accountAchievemetns: AccountAchievement[];
+  accountAchievements: AccountAchievement[];
   loader;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingController: LoadingController, private achievementsApiService: AchievementsApiService) {
@@ -25,7 +25,7 @@ export class Page3 {
     this.loader.present();
     this.achievementsApiService.getAccountAchievements(localStorage.getItem('api_key')).subscribe(
       res => {
-        this.accountAchievemetns = res;
+        this.accountAchievements = res;
         return this.loader.dismiss();
       },
       err => {

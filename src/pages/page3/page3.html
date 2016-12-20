@@ -5,8 +5,9 @@
     </button>
     <ion-title>{{category.name}}</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content>
-  <app-achievement-list [currentlyOpenedCategory]="category" [accountAchievements]="accountAchievemetns" (achievementOpened)="navToAchievementPage($event)"></app-achievement-list>
+  <app-achievement-list [currentlyOpenedCategory]="category" [achievements]="category.achievements" [accountAchievements]="accountAchievements" (achievementOpened)="navToAchievementPage($event)"></app-achievement-list>
 </ion-content>

@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {Category, AccountAchievement} from "../../shared/achievements.model";
+import {Category, AccountAchievement, Achievement} from "../../shared/achievements.model";
 import {Observable} from "rxjs";
 
 @Component({
@@ -10,6 +10,7 @@ export class AchievementListComponent implements OnInit {
 
   @Input() currentlyOpenedCategory: Category;
   @Input() accountAchievements: AccountAchievement[];
+  @Input() achievements: Achievement[];
   @Output() achievementOpened: EventEmitter<any>;
 
   constructor() {
@@ -20,7 +21,7 @@ export class AchievementListComponent implements OnInit {
   }
 
   get sortedAchievements(){
-    return this.currentlyOpenedCategory.achievements
+    return this.achievements
       .map(achievement => achievement)
       .sort((a, b) => {
         let currentAchievementCountA = 0;

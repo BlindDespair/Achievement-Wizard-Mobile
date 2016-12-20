@@ -16,6 +16,7 @@ import {AchievementItemComponent} from "./ahievements/achievement-list/achieveme
 import {AchievementPage} from "../pages/achievement-page/achievement-page";
 import {AchievementPageContentComponent} from "./ahievements/achievement-page-content/achievement-page-content.component";
 import {AchievementStatsComponent} from "./ahievements/achievement-stats/achievement-stats.component";
+import {AchievementSearchResultsComponent} from "./ahievements/achievement-search-results/achievement-search-results.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {AchievementStatsComponent} from "./ahievements/achievement-stats/achieve
     AchievementListComponent,
     AchievementItemComponent,
     AchievementPageContentComponent,
-    AchievementStatsComponent
+    AchievementStatsComponent,
+    AchievementSearchResultsComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)

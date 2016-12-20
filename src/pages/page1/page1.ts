@@ -1,9 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild, ElementRef} from '@angular/core';
 
 import {NavController, LoadingController, Loading} from 'ionic-angular';
-import {CategoryGroup, Account} from "../../app/shared/achievements.model";
+import {CategoryGroup, Account, AccountAchievement} from "../../app/shared/achievements.model";
 import {Page2} from "../page2/page2";
 import {AchievementsApiService} from "../../app/shared/achievements-api.service";
+import {Observable} from "rxjs";
+import {AchievementPage} from "../achievement-page/achievement-page";
 
 @Component({
   selector: 'page-page1',
@@ -11,15 +13,19 @@ import {AchievementsApiService} from "../../app/shared/achievements-api.service"
 })
 export class Page1 {
 
+  @ViewChild('searchRequest') searchInput: ElementRef;
   isAuthorized: boolean;
   account: Account;
   achievementsApiService: AchievementsApiService;
   error: any;
   categoryGroups: CategoryGroup[];
+  accountAchievements: AccountAchievement[];
   loader: Loading;
   accountLoaded: boolean;
   dataLoaded: boolean;
   isLoaderDismissed: boolean;
+  isSearching: boolean;
+  searching: Observable<any>;
 
 
 
@@ -28,6 +34,7 @@ export class Page1 {
     this.accountLoaded = false;
     this.dataLoaded = false;
     this.isLoaderDismissed = true;
+    this.isSearching = false;
     this.achievementsApiService = achievementsApiService;
 
   }
@@ -92,6 +99,25 @@ export class Page1 {
         return this.dismissLoader(err);
       });
   }
+  loadAccountAchievements(){
+    this.achievementsApiService.getAccountAchievements(localStorage.getItem('api_key')).subscribe(
+      res => {
+        this.accountAchievements = res;
+      },
+      err => {
+      });
+  }
+
+  openSearch(){
+    this.isSearching = true;
+    this.searching = Observable.fromEvent(this.searchInput.nativeElement, 'keyup');
+    console.log(this.searching);
+  }
+  closeSearch(value: string){
+    if(value.length === 0){
+      this.isSearching = false;
+    }
+  }
 
   dismissLoader(error?){
     if(this.accountLoaded && this.dataLoaded || error && !this.isLoaderDismissed){
@@ -113,5 +139,13 @@ export class Page1 {
       {
         categoryGroup: categoryGroup
       });
+  }
+  navToAchievementPage(achievementData: any){
+    console.log(achievementData.achievement, achievementData.accountAchievementCount, achievementData.currentTier);
+    this.navCtrl.push(AchievementPage,{
+      achievement: achievementData.achievement,
+      accountAchievementCount: achievementData.accountAchievementCount,
+      currentTier: achievementData.currentTier
+    })
   }
 }

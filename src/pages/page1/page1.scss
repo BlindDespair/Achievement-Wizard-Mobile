@@ -1,4 +1,21 @@
 page-page1 {
+  .page-title{
+    position: relative;
+    ion-title{
+      position: absolute;
+      top: 50%;
+      margin-top: -15px;
+    }
+  }
+  .nav-search{
+    input{
+      background: #fff;
+      border: solid #ddd 2px;
+      padding: 5px;
+      margin: 0;
+      width: 100%;
+    }
+  }
   .wrap {
     display: table !important;
     width: 100% !important;

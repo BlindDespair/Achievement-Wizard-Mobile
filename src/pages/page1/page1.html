@@ -3,14 +3,20 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Achievements</ion-title>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="page-title" width-66><ion-title>Achievements</ion-title></ion-col>
+        <ion-col class="search" *ngIf="isAuthorized" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" class="nav-search" width-34><input placeholder="Search" (focus)="openSearch(); searchRequest.value = ''" (blur)="closeSearch(searchRequest.value)" #searchRequest></ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <app-sign-in-form [error]="error" [style.display]="isAuthorized?'none':'inherit'" (authorizated)="onAutorized($event)"></app-sign-in-form>
-  <app-greeting-user *ngIf="isAuthorized" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" [account]="account" (greeting)="onGreeting()" (logedout)="onLogout()"></app-greeting-user>
-  <app-category-group *ngIf="isAuthorized" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" [categoryGroups]="categoryGroups" (loadCategoryGroupData)="onLoadData()" (categoryGroupOpened)="navToCategoryGroup($event)"></app-category-group>
+  <app-greeting-user *ngIf="isAuthorized&&!isSearching" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" [account]="account" (greeting)="onGreeting()" (logedout)="onLogout()"></app-greeting-user>
+  <app-category-group *ngIf="isAuthorized&&!isSearching" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" [categoryGroups]="categoryGroups" (loadCategoryGroupData)="onLoadData()" (categoryGroupOpened)="navToCategoryGroup($event)"></app-category-group>
+  <app-achievement-search-results *ngIf="isAuthorized&&isSearching" [style.display]="accountLoaded&&dataLoaded?'inherit':'none'" [accountAchievements]="accountAchievements" [categoryGroups]="categoryGroups" [searching]="searching" (searchOpened)="loadAccountAchievements()" (achievementOpened)="navToAchievementPage($event)"></app-achievement-search-results>
   <div *ngIf="isAuthorized&&!accountLoaded&&!dataLoaded&&isLoaderDismissed" class="wrap">
     <div class="button-wrap">
       <button ion-button (click)="retry()">Retry</button>
